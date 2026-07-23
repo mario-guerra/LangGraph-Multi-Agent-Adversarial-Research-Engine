@@ -1,4 +1,5 @@
 """Demo script to test the multi-agent system without user interaction."""
+import os
 from dotenv import load_dotenv
 load_dotenv()  # Load .env variables first so Orchid has the ORCHID_API_KEY
 
@@ -13,8 +14,9 @@ from py_agent.state import AgentState
 
 
 def demo_test():
-    """Run a demo test of the system with Orchid capture mode."""
-    print("🧪 Running demo test with Orchid capture mode...")
+    """Run a demo test of the system with Orchid."""
+    mode = os.getenv("ORCHID_MODE", "capture")
+    print(f"🧪 Running demo test with Orchid {mode} mode...")
     setup_api_keys()
     research_graph = create_research_graph()
     

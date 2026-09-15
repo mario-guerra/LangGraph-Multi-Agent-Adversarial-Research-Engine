@@ -282,7 +282,7 @@ def evidence_evaluator_node(state: AgentState) -> AgentState:
 
     context = (
         f"Original query: {state['messages'][0].content}\n"
-        f"Topics to cover: {', '.join(parsed_query.get('topics', []))}\n\n"
+        f"Topics to cover: {', '.join(parsed_query.get('topic', []))}\n\n"
         f"Credibility Report:\n{credibility_report}\n\n"
         f"Evidence Collected:\n{results_summary}"
     )

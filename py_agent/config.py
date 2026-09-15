@@ -11,26 +11,12 @@ except ImportError:
 
 def setup_api_keys():
     """Set up required API keys."""
-    # Google API key
-    if not os.environ.get("GOOGLE_API_KEY"):
-        api_key = os.getenv("GOOGLE_API_KEY")
+    # OpenRouter API key
+    if not os.environ.get("OPENROUTER_API_KEY"):
+        api_key = os.getenv("OPENROUTER_API_KEY")
         if not api_key:
-            api_key = getpass.getpass("Enter API key for Google Gemini: ")
-        os.environ["GOOGLE_API_KEY"] = api_key or "DUMMY_KEY"
-        
-    # OpenAI API key
-    if not os.environ.get("OPENAI_API_KEY"):
-        api_key = os.getenv("OPENAI_API_KEY")
-        if not api_key:
-            api_key = getpass.getpass("Enter API key for OpenAI: ")
-        os.environ["OPENAI_API_KEY"] = api_key or "DUMMY_KEY"
-        
-    # Anthropic API key
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        api_key = os.getenv("ANTHROPIC_API_KEY")
-        if not api_key:
-            api_key = getpass.getpass("Enter API key for Anthropic: ")
-        os.environ["ANTHROPIC_API_KEY"] = api_key or "DUMMY_KEY"
+            api_key = getpass.getpass("Enter API key for OpenRouter: ")
+        os.environ["OPENROUTER_API_KEY"] = api_key or "DUMMY_KEY"
         
     # Orchid Proxy API key
     if not os.environ.get("ORCHID_API_KEY"):

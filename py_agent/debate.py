@@ -75,7 +75,7 @@ def format_evidence_for_debate(step_results: list) -> str:
         sections.append(
             f"[{result.step_id}]{cred_note}\n"
             f"Quality: {result.evidence_quality.value} | Confidence: {result.confidence:.2f}\n"
-            f"{result.raw_data[:500]}"
+            f"{result.raw_data[:80]}"
         )
     return "\n\n---\n\n".join(sections)
 

@@ -1,6 +1,6 @@
 # Multi-Agent Adversarial Research Engine 🧠🔍
 
-This repository is a reference implementation of a stateful **Plan-Execute Research Assistant** built on LangGraph. It implements a Tri-Model Adversarial Architecture (using OpenAI, Anthropic, and Google Vertex AI) to autonomously investigate complex queries, evaluate sources, debate claims from opposing viewpoints, and compile synthesis verdicts.
+This repository is a reference implementation of a stateful **Plan-Execute Research Assistant** built on LangGraph. It implements a Tri-Model Adversarial Architecture (powered entirely by open-source models via OpenRouter) to autonomously investigate complex queries, evaluate sources, debate claims from opposing viewpoints, and compile synthesis verdicts.
 
 To visualize, debug, and trace the dynamic cyclical graphs of this system, the project features a **Web Dashboard UI** and includes demo integrations with the **OrchidTrace proxy debugger** for both **Python** and **TypeScript** execution layers.
 
@@ -75,15 +75,10 @@ To run the Python multi-agent system live, query real LLMs, and record your own 
 1. **Set Up Upstream Credentials** in the root `.env` file:
    ```env
    SERPAPI_API_KEY=your_serpapi_key_here
-   OPENAI_API_KEY=your_openai_key_here
-   ANTHROPIC_API_KEY=your_anthropic_key_here
+   OPENROUTER_API_KEY=your_openrouter_key_here
    ORCHID_API_KEY=orchid_demo_8675309
    ```
-2. **Authenticate with Google Cloud** (for Vertex AI):
-   ```bash
-   gcloud auth application-default login
-   ```
-3. **Run the Demo**:
+2. **Run the Demo**:
    Ensure `ORCHID_MODE` is NOT set to `replay` in `.env` (or set it to `capture`), then:
    ```bash
    python -m py_agent.orchid_demo
@@ -133,17 +128,11 @@ To run the TypeScript multi-agent system live, query real LLMs, and record your 
 
 1. **Set Up Upstream Credentials** in `ts_agent/.env`:
    ```env
-   GOOGLE_API_KEY=your_google_key_here
-   OPENAI_API_KEY=your_openai_key_here
-   ANTHROPIC_API_KEY=your_anthropic_key_here
+   OPENROUTER_API_KEY=your_openrouter_key_here
    SERPAPI_API_KEY=your_serpapi_key_here
    ORCHID_API_KEY=orchid_demo_8675309
    ```
-2. **Authenticate with Google Cloud** (for Vertex AI):
-   ```bash
-   gcloud auth application-default login
-   ```
-3. **Run the Demo**:
+2. **Run the Demo**:
    Ensure `ORCHID_MODE` is NOT set to `replay` in `ts_agent/.env`, then:
    ```bash
    npm run demo
@@ -213,7 +202,7 @@ langgraph_example/
 │   ├── credibility.py # Source credibility scoring engine
 │   ├── debate.py      # Optimist, Skeptic, and Judge nodes
 │   ├── graph.py       # StateGraph definition and routing logic
-│   ├── llm.py         # Centralized Vertex AI model initialization
+│   ├── llm.py         # Centralized OpenRouter model initialization
 │   ├── planner.py     # Autonomous research planning node
 │   ├── schemas.py     # Pydantic models enforcing structured output validation
 │   ├── state.py       # AgentState definitions
@@ -227,7 +216,7 @@ langgraph_example/
 │   │   ├── credibility.ts # Credibility scorer node
 │   │   ├── demo.ts        # CLI runner with Orchid SDK initialization
 │   │   ├── graph.ts       # StateGraph construction
-│   │   ├── llm.ts         # LLM declarations (Gemini, o3-mini, Claude)
+│   │   ├── llm.ts         # LLM declarations (Llama 3, DeepSeek)
 │   │   ├── schemas.ts     # Zod models for structured output validation
 │   │   ├── state.ts       # Reducers and state annotation definitions
 │   │   ├── tools.ts       # Query tool implementations
@@ -249,19 +238,14 @@ langgraph_example/
 ### Prerequisites
 - Python 3.11+ (for Python implementation)
 - Node.js 18+ (for TypeScript implementation)
-- Google Cloud Platform account (with Vertex AI enabled)
-- `gcloud` CLI installed and authenticated
 - SerpAPI key
-- OpenAI API key
-- Anthropic API key
+- OpenRouter API key
 
 ### API Keys & Auth
-1. **Vertex AI**: We use `langchain-google-vertexai` / `@langchain/google-vertexai`. Ensure you have authenticated locally via `gcloud auth application-default login` and set your quota project.
-2. **SerpAPI, LLMs, & Orchid Proxy**: Create a `.env` file (and/or `ts_agent/.env`) and add:
+Create a `.env` file (and/or `ts_agent/.env`) and add:
    ```env
    SERPAPI_API_KEY=your_key_here
-   OPENAI_API_KEY=your_openai_key_here
-   ANTHROPIC_API_KEY=your_anthropic_key_here
+   OPENROUTER_API_KEY=your_openrouter_key_here
    ORCHID_API_KEY=orchid_demo_8675309
    ```
 

@@ -13,9 +13,7 @@ cp .env.example .env
 ```
 
 Values needed:
-- `GOOGLE_API_KEY` — Google AI Studio key (same as root `.env`)
-- `OPENAI_API_KEY` — OpenAI key
-- `ANTHROPIC_API_KEY` — Anthropic key  
+- `OPENROUTER_API_KEY` — OpenRouter key
 - `SERPAPI_API_KEY` — SerpAPI key
 
 ### 2. Install dependencies
@@ -45,7 +43,7 @@ npm run typecheck
 src/
   schemas.ts     — Zod schemas (mirrors Python schemas.py)
   state.ts       — LangGraph AgentState annotation
-  llm.ts         — LLM instances (Gemini Flash, o3-mini, Claude Sonnet)
+  llm.ts         — LLM instances (Llama 3.3, DeepSeek V3)
   utils.ts       — invokeStructured retry wrapper
   tools.ts       — SerpAPI search functions
   credibility.ts — Credibility scoring node
